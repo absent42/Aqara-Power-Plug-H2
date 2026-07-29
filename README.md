@@ -10,3 +10,20 @@ In Zigbee2MQTT go to **settings** → **dev console** → **external converters*
 Alternatively place the file **aeu002.mjs** in the folder **zigbee2mqtt/data/external_converters** and restart Zigbee2MQTT.
 
 If an external converter is active for a device a cyan icon with "Supported: external" will be displayed under the device name in Zigbee2MQTT.
+
+## Features
+
+- On/OFf
+- Power On behaviour
+- Power metering
+- Overload protection
+- Child lock
+- Charging protection
+- Indicator light on/off
+- Indicator light status flip
+- Incidcator light color mode (fixed/power consumption/power per day/power per month)
+- Indicator light power consumption gradient range
+- Indicator light accumulated power gradient range
+- Indicator light fixed colour temp/XY
+- Indentify
+- OTA updates
