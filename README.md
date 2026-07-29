@@ -13,7 +13,7 @@ If an external converter is active for a device a cyan icon with "Supported: ext
 
 ## Features
 
-- On/OFf
+- Replay On/Off
 - Power On behaviour
 - Power metering
 - Overload protection
