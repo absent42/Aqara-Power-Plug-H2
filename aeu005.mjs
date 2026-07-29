@@ -46,13 +46,13 @@ const lumiIndicatorColorMode = (args) =>
         ...args,
     });
 
-const lumiPowerMax = (args) =>
+const lumiIndicatorPowerMax = (args) =>
     m.numeric({
-        name: "power_max",
+        name: "indicator_power_max",
         cluster: "manuSpecificLumi",
         attribute: {ID: 0x02e0, type: 0x39},
         valueMin: 0,
-        valueMax: 3680,
+        valueMax: 3840,
         valueStep: 1,
         unit: "W",
         description: "Maximum value of power consumption measurement for indicator light range",
@@ -62,9 +62,9 @@ const lumiPowerMax = (args) =>
         ...args,
     });
 
-const lumiAccumulatedPowerMax = (args) =>
+const lumiIndicatorAccumulatedPowerMax = (args) =>
     m.numeric({
-        name: "accumulated_power_max",
+        name: "indicator_accumulated_power_max",
         cluster: "manuSpecificLumi",
         attribute: {ID: 0x02e1, type: 0x39},
         valueMin: 0,
@@ -81,7 +81,7 @@ const lumiAccumulatedPowerMax = (args) =>
 // The LED indicator's brightness/colour share the same genOnOff and genLevelCtrl cluster/endpoint as the
 // socket relay, and without moveToLevelWithOnOffDisable, setting brightness to 0 turns off the relay.
 // The lights on/off expose is also removed since the relay's on/off is already exposed by lumiOnOff()
-const lumiLedLight = (args) => {
+const lumiIndicatorLight = (args) => {
     const result = lumiModernExtend.lumiLight({moveToLevelWithOnOffDisable: true, ...args});
 
     for (const expose of result.exposes ?? []) {
@@ -120,10 +120,10 @@ export default {
         lumiModernExtend.lumiFlipIndicatorLight(),
 
         lumiIndicatorColorMode(),
-        lumiPowerMax(),
-        lumiAccumulatedPowerMax(),
+        lumiIndicatorPowerMax(),
+        lumiIndicatorAccumulatedPowerMax(),
 
-        lumiLedLight({
+        lumiIndicatorLight({
             colorTemp: true,
             deviceTemperature: false,
             powerOutageCount: false,
