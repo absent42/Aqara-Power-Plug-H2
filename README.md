@@ -21,9 +21,9 @@ If an external converter is active for a device a cyan icon with "Supported: ext
 - Charging protection
 - Indicator light on/off
 - Indicator light status flip
-- Incidcator light color mode (fixed/power consumption/power per day/power per month)
-- Indicator light power consumption gradient range
-- Indicator light accumulated power gradient range
+- Incidcator light colour mode (fixed/power consumption/power per day/power per month)
+- Power consumption for indicator light colour gradient range
+- Accumulated power for indicator light colour gradient range
 - Indicator light fixed colour temp/XY
 - Indentify
 - OTA updates
