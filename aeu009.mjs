@@ -1,5 +1,3 @@
-import * as fz from "zigbee-herdsman-converters/converters/fromZigbee";
-import * as tz from "zigbee-herdsman-converters/converters/toZigbee";
 import * as lumi from "zigbee-herdsman-converters/lib/lumi";
 import * as m from "zigbee-herdsman-converters/lib/modernExtend";
 
@@ -78,26 +76,6 @@ const lumiIndicatorAccumulatedPowerMax = (args) =>
         ...args,
     });
 
-// The LED indicator's brightness/colour share the same genOnOff and genLevelCtrl cluster/endpoint as the
-// socket relay, and without moveToLevelWithOnOffDisable, setting brightness to 0 turns off the relay.
-// The lights on/off expose is also removed since the relay's on/off is already exposed by lumiOnOff()
-const lumiIndicatorLight = (args) => {
-    const result = lumiModernExtend.lumiLight({moveToLevelWithOnOffDisable: true, ...args});
-
-    for (const expose of result.exposes ?? []) {
-        if (typeof expose === "object" && expose.type === "light" && Array.isArray(expose.features)) {
-            expose.features = expose.features.filter((feature) => feature.name !== "state");
-        }
-    }
-
-    result.fromZigbee = (result.fromZigbee ?? []).filter((converter) => converter !== fz.on_off);
-    result.toZigbee = (result.toZigbee ?? [])
-        .filter((converter) => converter !== tz.light_onoff_brightness)
-        .concat({...tz.light_onoff_brightness, key: ["brightness", "brightness_percent", "on_time", "off_wait_time"]});
-
-    return result;
-};
-
 export default {
     zigbeeModel: ["lumi.plug.aeu009"],
     model: "SP-P07D",
@@ -125,7 +103,13 @@ export default {
         lumiIndicatorPowerMax(),
         lumiIndicatorAccumulatedPowerMax(),
 
-        lumiIndicatorLight({
+        // The LED indicator's brightness/colour share the same genOnOff and genLevelCtrl cluster/endpoint
+        // as the socket relay. Without moveToLevelWithOnOffDisable, setting brightness to 0 sets state
+        // "off" and turns off the relay. The light's own "state" is left in place (required by Home
+        // Assistant discovery) - it and lumiOnOff()'s switch state can never disagree since they address
+        // the same physical relay.
+        lumiModernExtend.lumiLight({
+            moveToLevelWithOnOffDisable: true,
             colorTemp: true,
             deviceTemperature: false,
             powerOutageCount: false,
