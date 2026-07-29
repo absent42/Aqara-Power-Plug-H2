@@ -88,7 +88,6 @@ export default {
         lumiModernExtend.addManuSpecificLumiCluster(),
         lumiModernExtend.lumiZigbeeOTA(),
         lumiModernExtend.lumiOnOff(), // Device temperature not supported
-        lumiModernExtend.lumiElectricityMeter(), // Device voltage not supported
         lumiModernExtend.lumiPowerOnBehavior(),
 
         m.electricityMeter({
