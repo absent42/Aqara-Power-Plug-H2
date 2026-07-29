@@ -5,8 +5,9 @@ Zigbee2MQTT external converter for Aqara Power Plug H2 UK (RGB)
 
 ## Installation
 
-**For Power Plug H2 UK (RGB) - use aeu009.mjs
-For Power Plug H2 EU (RGB) - use aeu005.mjs**
+**For Power Plug H2 UK (RGB) - use aeu009.mjs**
+
+**For Power Plug H2 EU (RGB) - use aeu005.mjs**
 
 In Zigbee2MQTT go to **settings** → **dev console** → **external converters**, create a new converter named **aeu009.mjs** and paste in the contents of the file. Click save then restart Zigbee2MQTT via **settings** → **tools**
 
