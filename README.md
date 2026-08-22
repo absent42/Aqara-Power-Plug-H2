@@ -1,5 +1,5 @@
 # Aqara Power Plug H2 UK/EU (RGB) Zigbee2MQTT converter
-Zigbee2MQTT external converter for Aqara Power Plug H2 UK (RGB)
+Zigbee2MQTT external converter for Aqara Power Plug H2 UK & EU (RGB)
 
 *Requires Zigbee2MQTT 2.9.2+*
 
