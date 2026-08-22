@@ -52,7 +52,7 @@ const lumiPowerMax = (args) =>
         cluster: "manuSpecificLumi",
         attribute: {ID: 0x02e0, type: 0x39},
         valueMin: 0,
-        valueMax: 3250,
+        valueMax: 3840,
         valueStep: 1,
         unit: "W",
         description: "Maximum value of power consumption measurement for indicator light range",
